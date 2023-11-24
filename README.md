@@ -1,4 +1,4 @@
-# Invoice Format Template
+# Invoice Format Template (Typst)
 
 This is a Quarto template that assists you in creating PDF invoices via Typst.
 
