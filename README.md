@@ -8,7 +8,7 @@ You can use this as a template to create an invoice.
 To do this, use the following command:
 
 ```bash
-quarto use template mcanouil/quarto-typst-invoice
+quarto use template mcanouil/quarto-invoice
 ```
 
 This will install the extension and create an example qmd file that you can use as a starting place for your invoice.
