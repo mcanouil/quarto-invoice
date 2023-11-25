@@ -42,6 +42,12 @@
   fontsize: 12pt,
   body
 ) = {
+  let issued = parse-date(invoice.at("issued"))
+  set document(
+    title: "Invoice " + invoice.at("number").replace("\\", "") + " - " + recipient.at("name").replace("\\", ""),
+    author: sender.at("name").replace("\\", ""),
+    date: issued
+  )
   set page(
     paper: paper,
     margin: margin,
@@ -182,8 +188,6 @@
     }
 
     v(fontsize * 2)
-
-    let issued = parse-date(invoice.at("issued"))
 
     text(luma(100),
       emph(
