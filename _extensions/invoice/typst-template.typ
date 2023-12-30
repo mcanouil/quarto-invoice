@@ -43,6 +43,17 @@
   body
 ) = {
   let issued = parse-date(invoice.at("issued"))
+  if "penalty" in invoice and invoice != none {
+    let penalty = invoice.at("penalty", default: "€40")
+  } else {
+    let penalty = "€40"
+  }
+  if "fee" in invoice and invoice != none {
+    let fee = invoice.at("fee", default: 2.28)
+  } else {
+    let fee = 2.28
+  }
+
   set document(
     title: "Invoice " + invoice.at("number").replace("\\", "") + " - " + recipient.at("name").replace("\\", ""),
     author: sender.at("name").replace("\\", ""),
@@ -197,9 +208,9 @@
           + ". The invoice must be paid under "
           + count-days(issued, parse-date(invoice.at("due")))
           + " day(s), otherwise you will have to pay a late fee of "
-          + invoice.at("fee", default:"2.28")
+          + str(fee)
           + " % and a "
-          + invoice.at("penalty", default:"€40")
+          + str(penalty)
           + " penalty for recovery costs. "
           + "No discount will be granted for early settlement."
       )
