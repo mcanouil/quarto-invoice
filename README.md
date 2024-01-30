@@ -19,7 +19,7 @@ You may also use this format with an existing Quarto project or document.
 From the Quarto project or document directory, run the following command to install this format:
 
 ```bash
-quarto add extension mcanouil/quarto-invoice
+quarto add mcanouil/quarto-invoice
 ```
 
 ## Usage
