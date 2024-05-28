@@ -47,4 +47,4 @@ format:
 
 You can view a preview of the rendered template below:
 
-![Invoice Template Screenshot](./template.png)
+![Invoice Template](https://m.canouil.dev/quarto-invoice/index.pdf)
