@@ -45,6 +45,4 @@ format:
     fontsize: 12pt 
 ```
 
-You can view a preview of the rendered template below:
-
-![Invoice Template](https://m.canouil.dev/quarto-invoice/index.pdf)
+You can view a preview of the rendered template below: [Invoice Template](https://m.canouil.dev/quarto-invoice/index.pdf)
