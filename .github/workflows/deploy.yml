@@ -35,7 +35,7 @@ jobs:
       - name: Render Quarto Project
         shell: bash
         run: |
-          quarto render example.qmd --to typst --output index.pdf --output-dir _site
+          quarto render template.qmd --to invoice-typst --output index.pdf --output-dir _site
       
       - uses: actions/configure-pages@v5
 
