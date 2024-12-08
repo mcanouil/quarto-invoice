@@ -36,13 +36,32 @@ or in your document yaml
 ```yaml
 format:
   invoice-typst:
-    lang: en_UK
+    lang: en
+    region: UK
     papersize: a4
     margin:
       x: 2.5cm
       y: 2.5cm
     mainfont: "Alegreya Sans"
     fontsize: 12pt 
+```
+
+Using [`_brand.yml`](https://posit-dev.github.io/brand-yml/) ([v1.2.0](../../releases/tag/1.2.0)):
+
+```markdown
+brand:
+  typography:
+    fonts:
+      - family: Alegreya Sans
+        source: google
+        weight: [600, 900]
+        style: normal
+        display: block
+    base:
+      family: "Alegreya Sans"
+      size: 12pt
+    headings:
+      color: dodgerblue
 ```
 
 You can view a preview of the rendered template below: [Invoice Template](https://m.canouil.dev/quarto-invoice/index.pdf)
