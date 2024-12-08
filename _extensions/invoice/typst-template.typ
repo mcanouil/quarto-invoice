@@ -40,7 +40,7 @@
   lang: "en",
   region: "UK",
   font: "Alegreya Sans",
-  heading-family: "Alegreya Sans",
+  heading-family: none,
   heading-weight: "bold",
   heading-style: "normal",
   heading-color: black,

@@ -47,7 +47,6 @@ brand:
       family: "Alegreya Sans"
       size: 12pt
     headings:
-      family: "Alegreya Sans"
       color: dodgerblue
 ---
 
