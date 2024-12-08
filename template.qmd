@@ -43,6 +43,8 @@ brand:
     fonts:
       - family: Alegreya Sans
         source: google
+        weight: [400, 700]
+        style: [normal, italic]
     base:
       family: "Alegreya Sans"
       size: 12pt
