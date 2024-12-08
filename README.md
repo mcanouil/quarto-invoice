@@ -48,7 +48,7 @@ format:
 
 Using [`_brand.yml`](https://posit-dev.github.io/brand-yml/) ([v1.2.0](../../releases/tag/1.2.0)):
 
-```markdown
+```yml
 brand:
   typography:
     fonts:
