@@ -54,13 +54,11 @@ brand:
     fonts:
       - family: Alegreya Sans
         source: google
-        weight: [600, 900]
-        style: normal
-        display: block
     base:
       family: "Alegreya Sans"
       size: 12pt
     headings:
+      family: "Alegreya Sans"
       color: dodgerblue
 ```
 
