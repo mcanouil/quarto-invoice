@@ -38,12 +38,21 @@ format:
     margin:
       x: 2.5cm
       y: 2.5cm
-    mainfont: "Alegreya Sans"
-    fontsize: 12pt 
+brand:
+  typography:
+    fonts:
+      - family: Alegreya Sans
+        source: google
+    base:
+      family: "Alegreya Sans"
+      size: 12pt
+    headings:
+      color: dodgerblue
 ---
 
 <!--
 Currently hard to get the right style for the table in markdown.
+
 +-----------------------------------+-----+------------+-------+-----------------+
 | Details                           | Qty | Unit price | VAT % | Total excl. VAT | 
 +===================================+=====+============+=======+=================+

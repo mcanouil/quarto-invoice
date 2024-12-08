@@ -37,11 +37,25 @@
   penalty: "€40",
   paper: "a4",
   margin: (x: 2.5cm, y: 2.5cm),
-  lang: "en_UK",
-  font: ("Alegreya Sans", "Alegreya Sans SC", "Alegreya Sans", "Alegreya Sans SC"),
+  lang: "en",
+  region: "UK",
+  font: "Alegreya Sans",
+  heading-family: none,
+  heading-weight: "bold",
+  heading-style: "normal",
+  heading-color: black,
+  heading-line-height: 0.65em,
   fontsize: 12pt,
+  title-size: 1.5em,
   body
 ) = {
+
+  show heading: it => [
+    #set par(leading: heading-line-height)
+    #set text(font: heading-family, weight: heading-weight, style: heading-style, fill: heading-color)
+    #it.body
+  ]
+
   let issued = parse-date(invoice.at("issued"))
   if "penalty" in invoice and invoice != none {
     let penalty = invoice.at("penalty", default: "€40")
@@ -66,6 +80,7 @@
   set par(justify: true)
   set text(
     lang: lang,
+    region: region,
     font: font,
     size: fontsize,
   )
