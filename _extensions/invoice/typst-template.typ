@@ -207,7 +207,7 @@
       linebreak()
       "Reference: " + strong(invoice.at("reference").replace("\\", ""))
       linebreak()
-      text(luma(100), emph("To use as label on your bank transfer to identify the transaction."))
+      text(luma(100), emph("To be used as label on your bank transfer to identify the transaction."))
       linebreak()
     } else {
       hide("a")
@@ -220,9 +220,9 @@
         sender.at("name").replace("\\", "")
           + " sent you this invoice on "
           + format-date(issued)
-          + ". The invoice must be paid under "
+          + ". The invoice must be paid in under "
           + count-days(issued, parse-date(invoice.at("due")))
-          + " day(s), otherwise you will have to pay a late fee of "
+          + " days, otherwise you will have to pay a late fee of "
           + str(fee)
           + " % and a "
           + str(penalty)
