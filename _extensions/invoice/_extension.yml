@@ -1,6 +1,6 @@
 title: Invoice
 author: Mickaël Canouil
-version: 1.2.2
+version: 1.2.3
 quarto-required: ">=1.6.39"
 contributes:
   formats:
