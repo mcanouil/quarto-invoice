@@ -33,6 +33,7 @@ recipient:
     country: United States
 format:
   invoice-typst:
+    output-file: index
     lang: en_UK
     papersize: a4
     margin:
