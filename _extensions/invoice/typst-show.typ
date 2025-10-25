@@ -8,7 +8,7 @@ $endif$
 $if(logo)$
   logo: "$logo$",
 $elseif(brand.logo)$
-  font: ("$brand.logo$",),
+  logo: ("$brand.logo$",),
 $endif$
 $if(sender)$
   sender: (
