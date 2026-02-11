@@ -1,7 +1,7 @@
 ---
 title: Consulting 2023 
 description: 2023/01/01 -- 2023/12/31
-logo: none
+# logo: none
 sender:
   name: Firstname LASTNAME
   email: Firstname.LASTNAME@company.dev
