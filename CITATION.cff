@@ -9,5 +9,5 @@ authors:
 repository-code: "https://github.com/mcanouil/quarto-invoice"
 url: "http://m.canouil.dev/quarto-invoice/"
 license: "MIT"
-date-released: "2025-05-15"
-version: 1.3.0
+date-released: "2026-02-11"
+version: 1.3.1
