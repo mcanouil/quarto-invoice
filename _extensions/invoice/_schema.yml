@@ -1,0 +1,120 @@
+# _schema.yml for "invoice" format extension
+# Describes format-specific options for IDE tooling and runtime validation.
+
+# Per-format schemas.
+# Options configured under format: invoice-typst: in YAML metadata.
+formats:
+  invoice-typst:
+    logo:
+      type: string
+      description: "Path to a logo image file."
+      completion:
+        type: file
+        extensions: [.png, .jpg, .svg]
+    sender:
+      type: object
+      required: true
+      description: "Sender details."
+      properties:
+        name:
+          type: string
+          required: true
+          description: "Sender name."
+        email:
+          type: string
+          description: "Sender email address."
+        registration:
+          type: string
+          description: "Company registration number."
+        vat:
+          type: string
+          description: "VAT number."
+        exempted:
+          type: string
+          description: "VAT exemption notice text."
+        address:
+          type: object
+          description: "Sender postal address."
+          properties:
+            street:
+              type: string
+              description: "Street address."
+            zip:
+              type: string
+              description: "Postal code."
+            city:
+              type: string
+              description: "City name."
+            state:
+              type: string
+              description: "State or region."
+            country:
+              type: string
+              description: "Country name."
+    recipient:
+      type: object
+      required: true
+      description: "Recipient details."
+      properties:
+        name:
+          type: string
+          required: true
+          description: "Recipient name."
+        address:
+          type: object
+          description: "Recipient postal address."
+          properties:
+            street:
+              type: string
+              description: "Street address."
+            zip:
+              type: string
+              description: "Postal code."
+            city:
+              type: string
+              description: "City name."
+            state:
+              type: string
+              description: "State or region."
+            country:
+              type: string
+              description: "Country name."
+    invoice:
+      type: object
+      required: true
+      description: "Invoice details."
+      properties:
+        number:
+          type: string
+          required: true
+          description: "Invoice number."
+        issued:
+          type: string
+          required: true
+          description: "Issue date in YYYY-MM-DD format."
+        due:
+          type: string
+          required: true
+          description: "Payment due date in YYYY-MM-DD format."
+        reference:
+          type: string
+          required: true
+          description: "Payment reference for bank transfer."
+        fee:
+          type: number
+          default: 2.28
+          description: "Late payment fee percentage."
+        penalty:
+          type: string
+          default: "\u20AC40"
+          description: "Recovery cost penalty amount."
+    bank:
+      type: object
+      description: "Bank details for payment."
+      properties:
+        bic:
+          type: string
+          description: "Bank BIC/SWIFT code."
+        iban:
+          type: string
+          description: "Bank IBAN."
