@@ -3,6 +3,9 @@
 
 # Per-format schemas.
 # Options configured under format: invoice-typst: in YAML metadata.
+
+$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v1/extension-schema.json
+
 formats:
   invoice-typst:
     logo:
