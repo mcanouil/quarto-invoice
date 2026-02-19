@@ -1,0 +1,31 @@
+{
+	"Invoice front matter": {
+		"prefix": "meta",
+		"body": [
+			"---",
+			"title: \"Invoice\"",
+			"format: invoice-typst",
+			"sender:",
+			"  name: \"${1:Your Name}\"",
+			"  email: \"${2:your@email.com}\"",
+			"  address:",
+			"    street: \"${3:123 Main Street}\"",
+			"    zip: \"${4:SW1A 1AA}\"",
+			"    city: \"${5:London}\"",
+			"    country: \"${6:United Kingdom}\"",
+			"recipient:",
+			"  name: \"${7:Client Name}\"",
+			"  address:",
+			"    street: \"${8:456 Client Road}\"",
+			"    zip: \"${9:EC1A 1BB}\"",
+			"    city: \"${10:London}\"",
+			"    country: \"${11:United Kingdom}\"",
+			"invoice:",
+			"  number: \"${12:INV-2026-001}\"",
+			"  issued: \"${13:2026-02-19}\"",
+			"  due: \"${14:2026-03-19}\"",
+			"---"
+		],
+		"description": "Complete invoice document front matter"
+	}
+}
