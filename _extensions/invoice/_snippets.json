@@ -1,6 +1,6 @@
 {
 	"Invoice front matter": {
-		"prefix": "invoice-meta",
+		"prefix": "meta",
 		"body": [
 			"---",
 			"title: \"Invoice\"",
