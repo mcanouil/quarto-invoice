@@ -1,7 +1,6 @@
 ---
-title: Consulting 2023 
-description: 2023/01/01 -- 2023/12/31
-# logo: none
+title: Consulting 2026
+description: 2026/01/01 -- 2026/12/31
 sender:
   name: Firstname LASTNAME
   email: Firstname.LASTNAME@company.dev
@@ -14,12 +13,20 @@ sender:
   vat: FR1234567890
   exempted: "Exempted from VAT (article 259-1 du CGI, France)."
 invoice:
-  number: 2023-001
-  issued: 2024-01-01
-  due: 2024-01-31
+  number: 2026-001
+  issued: 2026-01-01
+  due: 2026-01-31
   reference: abcd1234
   fee: 2.28
-  penalty: €40
+  penalty: 40
+  currency: EUR
+  status: unpaid
+  items:
+    - description: A very important deliverable
+      details: A description of the tasks.
+      quantity: 1
+      unit-price: 12345.67
+      vat: 0
 bank:
   bic: AZERTYUI
   iban: FR12 1234 4567 7890 1234 5678 901
@@ -34,7 +41,8 @@ recipient:
 format:
   invoice-typst:
     output-file: index
-    lang: en_UK
+    lang: en
+    region: UK
     papersize: a4
     margin:
       x: 2.5cm
@@ -52,44 +60,3 @@ brand:
     headings:
       color: dodgerblue
 ---
-
-<!--
-Currently hard to get the right style for the table in markdown.
-
-+-----------------------------------+-----+------------+-------+-----------------+
-| Details                           | Qty | Unit price | VAT % | Total excl. VAT | 
-+===================================+=====+============+=======+=================+
-| **A very important deliverable**  | 1   | €12,345.67 | 0%    | €12,345.67      |
-| *A description of the tasks*      |     |            |       |                 |
-+-----------------------------------+-----+------------+-------+-----------------+
-|                                                                                |
-+-----------------------------------+------------------+-------------------------+
-|                                   | Total excl. VAT  | €12,345.67              |
-+-----------------------------------+------------------+-------------------------+
-|                                   | VAT              | €0.00                   |
-+-----------------------------------+------------------+-------------------------+
-|                                   | Total            | €12,345.67              |
-+-----------------------------------+------------------+-------------------------+
--->
-
-```{=typst}
-#table(
-  columns: (1fr, auto, auto, auto, auto),
-  rows: 36pt,
-  fill: (col, row) => 
-    if (row == 0 and col in (0, 1, 2, 3, 4, 5)) or (row == 5 and col in (2, 3, 4, 5)) {
-      luma(240)
-    } else {
-      white
-    },
-  inset: 5pt,
-  align: horizon,
-  stroke: none,
-  [*Details*], [*Qty*], [*Unit price*], [*VAT %*], [*Total excl. VAT*],
-  [*A very important deliverable* \ _A description of the tasks_], [1], [€12,345.67], [0 %], [€12,345.67],
-  [], [], [], [], [],
-  [], [], [*Total excl. VAT*], [], [€12,345.67],
-  [], [], [*VAT*], [], [€0.00],
-  [], [], [*Total*], [], [€12,345.67]
-)
-```

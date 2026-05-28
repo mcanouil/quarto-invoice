@@ -22,8 +22,16 @@
 			"    country: \"${11:United Kingdom}\"",
 			"invoice:",
 			"  number: \"${12:INV-2026-001}\"",
-			"  issued: \"${13:2026-02-19}\"",
-			"  due: \"${14:2026-03-19}\"",
+			"  issued: \"${13:2026-05-28}\"",
+			"  due: \"${14:2026-06-28}\"",
+			"  reference: \"${15:ACME-2026-001}\"",
+			"  currency: \"${16|EUR,USD,GBP,CHF,JPY,CAD,AUD|}\"",
+			"  status: \"${17|unpaid,paid,overdue,draft,cancelled|}\"",
+			"  items:",
+			"    - description: \"${18:Item description}\"",
+			"      quantity: ${19:1}",
+			"      unit-price: ${20:0}",
+			"      vat: ${21:0}",
 			"---"
 		],
 		"description": "Complete invoice document front matter"

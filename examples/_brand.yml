@@ -1,0 +1,24 @@
+# Invoice Format - Example Brand File
+# Used by the example template-brand.qmd to demonstrate _brand.yml integration.
+#
+# @license MIT
+# @copyright 2026 Mickaël Canouil
+# @author Mickaël Canouil
+
+meta:
+  name:
+    full: Acme Consulting Limited
+    short: Acme Consulting
+typography:
+  fonts:
+    - family: Alegreya Sans
+      source: google
+      weight: [400, 700]
+      style: [normal, italic]
+  base:
+    family: "Alegreya Sans"
+    size: 12pt
+  headings:
+    family: "Alegreya Sans"
+    weight: bold
+    color: dodgerblue

@@ -1,8 +1,25 @@
 # Changelog
 
-## Unreleased
+## 1.5.0 (2026-05-28)
 
-No user-facing changes.
+### New Features
+
+- feat: Add structured `invoice.items` YAML array with auto-generated totals table.
+- feat: Add payment-status badge via `invoice.status` (paid, unpaid, overdue, draft, cancelled).
+- feat: Add multi-currency support via `invoice.currency` (ISO 4217) with locale-aware amount formatting.
+- feat: Ship a self-contained `_brand.yml` example under `examples/`.
+
+### Bug Fixes
+
+- fix: Validate that `invoice.due` is on or after `invoice.issued`; raise a clear render-time error instead of producing a nonsensical document.
+- fix: Unify currency notation; numeric `invoice.penalty` values are now formatted using the invoice currency, and amount formatting follows the active locale.
+- fix: Drop dead `let` blocks in the Typst template that shadowed nothing and never affected output.
+- fix: Heading show rule no longer fails when no brand heading family is provided.
+
+### Documentation
+
+- docs: Refresh README with sections for items, currency, status, date validation, and brand integration.
+- docs: Update example `template.qmd` to demonstrate structured items, status badge, and currency code.
 
 ## 1.4.0 (2026-02-21)
 

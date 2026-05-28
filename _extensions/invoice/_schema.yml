@@ -108,9 +108,42 @@ formats:
           default: 2.28
           description: "Late payment fee percentage."
         penalty:
+          type: [number, string]
+          default: 40
+          description: "Recovery cost penalty. Numbers are formatted using the invoice currency; strings are used verbatim."
+        currency:
           type: string
-          default: "\u20AC40"
-          description: "Recovery cost penalty amount."
+          default: EUR
+          description: "ISO 4217 currency code (for example EUR, USD, GBP)."
+        status:
+          type: string
+          enum: [paid, unpaid, overdue, draft, cancelled]
+          description: "Payment status badge displayed in the header."
+        items:
+          type: array
+          description: "Structured line items. When set, the template renders an auto-generated totals table in place of the document body."
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+                required: true
+                description: "Short item description."
+              details:
+                type: string
+                description: "Optional longer description rendered below the item."
+              quantity:
+                type: number
+                default: 1
+                description: "Quantity for this line item."
+              unit-price:
+                type: number
+                default: 0
+                description: "Unit price excluding VAT."
+              vat:
+                type: number
+                default: 0
+                description: "VAT rate as a percentage."
     bank:
       type: object
       description: "Bank details for payment."
