@@ -45,8 +45,7 @@
 
 // Locale-aware decimal/thousand separators.
 // Returns (thousand, decimal).
-#let _locale-separators(lang, region) = {
-  let _ = region
+#let _locale-separators(lang) = {
   let lang-key = lower(str(lang))
   if lang-key in ("de", "es", "it", "nl", "pt", "pl") {
     (".", ",")
@@ -59,8 +58,9 @@
 
 #let format-amount(value, lang: "en", region: "UK", decimals: 2) = {
   if value == none { return "" }
-  let n = if type(value) == str { float(value) } else { float(value) }
-  let separators = _locale-separators(lang, region)
+  let _ = region
+  let n = float(value)
+  let separators = _locale-separators(lang)
   let thousand = separators.at(0)
   let decimal = separators.at(1)
   let negative = n < 0

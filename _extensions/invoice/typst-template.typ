@@ -28,14 +28,6 @@
   str(duration.days())
 }
 
-#let _coerce-number-default(value, default) = {
-  if value == none { return default }
-  if type(value) == int or type(value) == float { return float(value) }
-  let cleaned = str(value).trim()
-  if cleaned == "" { return default }
-  float(cleaned)
-}
-
 #let invoice(
   logo: none,
   title: none,
@@ -66,11 +58,11 @@
 
   show heading: it => {
     set par(leading: heading-line-height)
+    set text(weight: heading-weight, style: heading-style, fill: heading-color)
     if heading-family != none {
-      set text(font: heading-family, weight: heading-weight, style: heading-style, fill: heading-color)
+      set text(font: heading-family)
       it.body
     } else {
-      set text(weight: heading-weight, style: heading-style, fill: heading-color)
       it.body
     }
   }
@@ -85,7 +77,7 @@
 
   let invoice-currency = invoice.at("currency", default: currency)
   let invoice-status = invoice.at("status", default: status)
-  let invoice-fee = _coerce-number-default(invoice.at("fee", default: fee), fee)
+  let invoice-fee = _coerce-number(invoice.at("fee", default: fee), default: fee)
   let invoice-penalty-raw = invoice.at("penalty", default: penalty)
   let invoice-items = invoice.at("items", default: none)
 
