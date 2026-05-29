@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.5.0 (2026-05-28)
+## Unreleased
 
 ### New Features
 
