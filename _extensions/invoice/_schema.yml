@@ -1,10 +1,10 @@
-# _schema.yml for "invoice" format extension
+# Schema for the invoice extension
 # Describes format-specific options for IDE tooling and runtime validation.
 
 # Per-format schemas.
 # Options configured under format: invoice-typst: in YAML metadata.
 
-$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v1/extension-schema.json
+$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v2/extension-schema.json
 
 formats:
   invoice-typst:
@@ -25,6 +25,7 @@ formats:
           description: "Sender name."
         email:
           type: string
+          format: email
           description: "Sender email address."
         registration:
           type: string
@@ -94,10 +95,12 @@ formats:
         issued:
           type: string
           required: true
+          format: date
           description: "Issue date in YYYY-MM-DD format."
         due:
           type: string
           required: true
+          format: date
           description: "Payment due date in YYYY-MM-DD format."
         reference:
           type: string
@@ -118,6 +121,7 @@ formats:
         status:
           type: string
           enum: [paid, unpaid, overdue, draft, cancelled]
+          enumCaseInsensitive: true
           description: "Payment status badge displayed in the header."
         items:
           type: array
