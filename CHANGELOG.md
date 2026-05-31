@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0 (2026-05-31)
+
 ### New Features
 
 - feat: Add structured `invoice.items` YAML array with auto-generated totals table.
