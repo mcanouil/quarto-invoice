@@ -84,30 +84,26 @@
   }
 
   let totals = _item-totals(items)
-  let spacer = table.cell(colspan: 5, [])
+  let total-row(label, value, fill) = (
+    [], [],
+    table.cell(fill: fill, colspan: 2, align: left + horizon)[*#label*],
+    table.cell(fill: fill)[#format-money(value)],
+  )
 
-  cells.push(spacer)
-
-  cells.push(table.cell(fill: footer-fill, []))
-  cells.push(table.cell(fill: footer-fill, []))
-  cells.push(table.cell(fill: footer-fill, colspan: 2, [*#labels.total-excl*]))
-  cells.push(table.cell(fill: footer-fill, format-money(totals.excluding-vat)))
-
-  cells.push(table.cell(fill: footer-fill, []))
-  cells.push(table.cell(fill: footer-fill, []))
-  cells.push(table.cell(fill: footer-fill, colspan: 2, [*#labels.total-vat*]))
-  cells.push(table.cell(fill: footer-fill, format-money(totals.vat)))
-
-  cells.push(table.cell(fill: footer-fill, []))
-  cells.push(table.cell(fill: footer-fill, []))
-  cells.push(table.cell(fill: footer-fill, colspan: 2, [*#labels.total-incl*]))
-  cells.push(table.cell(fill: footer-fill, format-money(totals.total)))
+  cells.push(table.hline(stroke: 0.5pt + luma(180)))
+  cells += total-row(labels.total-excl, totals.excluding-vat, luma(240))
+  cells += total-row(labels.total-vat, totals.vat, white)
+  cells += (
+    [], [],
+    table.cell(fill: luma(220), colspan: 2, align: left + horizon)[#text(size: 1.1em)[*#labels.total-incl*]],
+    table.cell(fill: luma(220))[#text(size: 1.1em)[*#format-money(totals.total)*]],
+  )
 
   table(
     columns: (1fr, auto, auto, auto, auto),
     rows: 36pt,
     inset: 5pt,
-    align: horizon,
+    align: (left + horizon, right + horizon, right + horizon, right + horizon, right + horizon),
     stroke: none,
     ..cells,
   )

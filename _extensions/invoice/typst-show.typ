@@ -49,9 +49,6 @@ $if(invoice)$
 $if(invoice.currency)$
     currency: "$invoice.currency$",
 $endif$
-$if(invoice.status)$
-    status: "$invoice.status$",
-$endif$
 $if(invoice.items)$
     items: (
 $for(invoice.items)$

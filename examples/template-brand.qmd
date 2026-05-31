@@ -17,7 +17,6 @@ invoice:
   due: 2026-05-31
   reference: ACME-2026-001
   currency: GBP
-  status: paid
   fee: 8
   penalty: 40
   items:

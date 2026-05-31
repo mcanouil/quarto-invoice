@@ -20,7 +20,6 @@ invoice:
   fee: 2.28
   penalty: 40
   currency: EUR
-  status: unpaid
   items:
     - description: A very important deliverable
       details: A description of the tasks.

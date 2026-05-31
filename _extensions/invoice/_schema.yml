@@ -118,11 +118,6 @@ formats:
           type: string
           default: EUR
           description: "ISO 4217 currency code (for example EUR, USD, GBP)."
-        status:
-          type: string
-          enum: [paid, unpaid, overdue, draft, cancelled]
-          enumCaseInsensitive: true
-          description: "Payment status badge displayed in the header."
         items:
           type: array
           description: "Structured line items. When set, the template renders an auto-generated totals table in place of the document body."

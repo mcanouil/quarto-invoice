@@ -5,7 +5,6 @@
 ### New Features
 
 - feat: Add structured `invoice.items` YAML array with auto-generated totals table.
-- feat: Add payment-status badge via `invoice.status` (paid, unpaid, overdue, draft, cancelled).
 - feat: Add multi-currency support via `invoice.currency` (ISO 4217) with locale-aware amount formatting.
 - feat: Ship a self-contained `_brand.yml` example under `examples/`.
 
@@ -18,8 +17,8 @@
 
 ### Documentation
 
-- docs: Refresh README with sections for items, currency, status, date validation, and brand integration.
-- docs: Update example `template.qmd` to demonstrate structured items, status badge, and currency code.
+- docs: Refresh README with sections for items, currency, date validation, and brand integration.
+- docs: Update example `template.qmd` to demonstrate structured items and currency code.
 
 ## 1.4.0 (2026-02-21)
 

@@ -79,12 +79,6 @@ Set `invoice.currency` to an ISO 4217 code (for example `EUR`, `USD`, `GBP`, `CH
 Amounts are formatted with locale-aware decimal and thousand separators based on `lang`.
 Codes without a built-in symbol are emitted as the code itself followed by a space.
 
-### Payment Status
-
-Add `invoice.status` to display a coloured badge in the header.
-Allowed values are `paid`, `unpaid`, `overdue`, `draft`, and `cancelled`.
-Any other value triggers a clear render-time error.
-
 ### Date Validation
 
 The `invoice.due` date must be on or after `invoice.issued`.

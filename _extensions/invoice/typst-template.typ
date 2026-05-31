@@ -39,7 +39,6 @@
   fee: 2.28,
   penalty: 40,
   currency: "EUR",
-  status: none,
   paper: "a4",
   margin: (x: 2.5cm, y: 2.5cm),
   lang: "en",
@@ -76,7 +75,6 @@
   }
 
   let invoice-currency = invoice.at("currency", default: currency)
-  let invoice-status = invoice.at("status", default: status)
   let invoice-fee = _coerce-number(invoice.at("fee", default: fee), default: fee)
   let invoice-penalty-raw = invoice.at("penalty", default: penalty)
   let invoice-items = invoice.at("items", default: none)
@@ -196,13 +194,6 @@
       } else {
         hide("a")
       }
-
-      let badge = status-badge(invoice-status, fontsize: fontsize)
-      if badge != none {
-        linebreak()
-        v(fontsize * 0.5)
-        badge
-      }
     }),
     align(center, {
       if logo != "none" and logo != none {
@@ -217,7 +208,7 @@
     if title != none {
       heading(level: 1, title.replace("\\", ""))
       if description != none {
-        emph(description.replace("\\", ""))
+        emph(description.replace("\\", "").replace("---", "\u{2014}").replace("--", "\u{2013}"))
       }
     }
 
