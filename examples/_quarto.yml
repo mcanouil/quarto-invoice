@@ -1,0 +1,6 @@
+project:
+  type: default
+  pre-render:
+    - "cp -r ../_extensions ."
+  post-render:
+    - "rm -rf _extensions"
