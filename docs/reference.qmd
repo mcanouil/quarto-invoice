@@ -1,0 +1,117 @@
+---
+title: "Reference"
+subtitle: "Every option the invoice format accepts."
+description: "The complete invoice configuration: sender and recipient, the invoice block and its line items, bank details, currency handling, and validation."
+---
+
+## Using the format
+
+```yaml
+format: invoice-typst
+```
+
+```bash
+quarto render invoice.qmd --to invoice-typst
+```
+
+## Sender and recipient
+
+Both are required.
+
+| Option | Description |
+| --- | --- |
+| `sender.name` | Required. |
+| `sender.email` | |
+| `sender.registration` | Company registration number. |
+| `sender.vat` | VAT number. |
+| `sender.exempted` | The wording of a VAT exemption notice. |
+| `sender.address` | `street`, `zip`, `city`, `state`, `country`. |
+| `recipient.name` | Required. |
+| `recipient.address` | The same address fields. |
+
+: The two parties. {.striped .hover tbl-colwidths="[30,70]"}
+
+## The invoice block
+
+| Option | Description |
+| --- | --- |
+| `invoice.number` | The invoice number. |
+| `invoice.issued` | Issue date, as `YYYY-MM-DD`. |
+| `invoice.due` | Due date, as `YYYY-MM-DD`. |
+| `invoice.reference` | A payment reference for the transfer. |
+| `invoice.currency` | An ISO 4217 code: `EUR`, `USD`, `GBP`, `CHF`, `JPY`. |
+| `invoice.fee` | A late payment fee, as a percentage. |
+| `invoice.penalty` | Recovery costs. A number is formatted in the invoice currency; a string is used as written. |
+| `invoice.items` | The line items. See below. |
+
+: The invoice block. {.striped .hover tbl-colwidths="[28,72]"}
+
+### Line items
+
+```yaml
+invoice:
+  items:
+    - description: Strategy workshop
+      details: Two-day on-site facilitation.
+      quantity: 2
+      unit-price: 1500
+      vat: 20
+```
+
+| Field | Description |
+| --- | --- |
+| `description` | A short description. |
+| `details` | A longer one, set below the item. |
+| `quantity` | |
+| `unit-price` | Excluding VAT. |
+| `vat` | The rate, as a percentage. |
+
+: The fields of a line item. {.striped .hover tbl-colwidths="[24,76]"}
+
+The subtotal excluding VAT, the VAT, and the grand total are computed from these.
+
+::: {.callout-note}
+Leave `invoice.items` out and the body of the document is rendered in its place instead, which is how a hand-written Typst table is kept working.
+:::
+
+## Bank details
+
+`bank.bic` and `bank.iban`, printed for payment.
+
+## Currency
+
+Amounts are formatted with the decimal and thousand separators of the document's `lang`, so the same figures read correctly in English and in French.
+
+A currency code with no built-in symbol is printed as the code followed by a space.
+
+## Validation
+
+::: {.callout-important}
+`invoice.due` must fall on or after `invoice.issued`.
+Inverted dates raise an error while rendering rather than producing a document nobody would notice was wrong.
+:::
+
+## Branding
+
+The format reads [`_brand.yml`](https://posit-dev.github.io/brand-yml/) for typography and heading colour:
+
+```yaml
+brand:
+  typography:
+    fonts:
+      - family: Alegreya Sans
+        source: google
+    base:
+      family: "Alegreya Sans"
+      size: 12pt
+    headings:
+      family: "Alegreya Sans"
+      color: dodgerblue
+```
+
+A self-contained example lives under [`examples/`](https://github.com/mcanouil/quarto-invoice/tree/main/examples) in the repository.
+
+## Limitations
+
+- PDF through Typst only.
+- The totals table is generated from `invoice.items`; mixing it with a hand-written table means choosing one or the other.

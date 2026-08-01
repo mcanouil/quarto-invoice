@@ -1,0 +1,82 @@
+---
+title: "Invoice"
+subtitle: "An invoice format for Quarto."
+description: "What the invoice format gives you, how to start from it, and the front matter that fills an invoice in."
+authors:
+  - name: "Mickaël CANOUIL, _Ph.D._"
+    orcid: "0000-0002-3396-4549"
+    url: "https://mickael.canouil.fr"
+---
+
+An invoice is arithmetic and layout: line items, a VAT rate per line, a subtotal, a total, and a page that has to look like a document rather than a spreadsheet.
+
+`invoice` takes the line items as front matter and does the rest.
+The totals table is computed from the quantities, unit prices, and VAT rates, and the page is laid out through Typst.
+
+[See one rendered by this site](preview.pdf).
+
+## Starting an invoice
+
+```bash
+quarto use template {{< var extension.reference >}}
+```
+
+::: {.btn-group role="group" aria-label="Quarto Wizard installer options"}
+
+[Visual Studio Code](vscode://mcanouil.quarto-wizard/use?repo={{< var extension.wizard-reference >}}){.btn .btn-outline-primary title="Use {{< var extension.reference >}} in Visual Studio Code using the Quarto Wizard extension."}
+[Positron](positron://mcanouil.quarto-wizard/use?repo={{< var extension.wizard-reference >}}){.btn .btn-outline-primary title="Use {{< var extension.reference >}} in Positron using the Quarto Wizard extension."}
+[VSCodium](vscodium://mcanouil.quarto-wizard/use?repo={{< var extension.wizard-reference >}}){.btn .btn-outline-primary title="Use {{< var extension.reference >}} in VSCodium using the Quarto Wizard extension."}
+
+:::
+
+## Adding it to a document you already have
+
+```bash
+quarto add {{< var extension.reference >}}
+```
+
+This will install the extension under the `_extensions` subdirectory.
+If you are using version control, you will want to check in this directory.
+
+## Quick start
+
+```yaml
+format:
+  invoice-typst:
+    sender:
+      name: "Example Consulting Ltd"
+    recipient:
+      name: "Director Doe & Co"
+    invoice:
+      number: "INV-2026-001"
+      issued: 2026-05-01
+      due: 2026-05-31
+      currency: GBP
+      items:
+        - description: Strategy workshop
+          quantity: 2
+          unit-price: 1500
+          vat: 20
+```
+
+```bash
+quarto render invoice.qmd --to invoice-typst
+```
+
+`sender`, `recipient`, and `invoice` are required; the rest is filled in when it is given.
+
+See the [Reference](reference.qmd) for every option, and the [Examples](examples.qmd) for a branded invoice and a hand-written table.
+
+## Where it works
+
+PDF, through Typst.
+
+Typst ships with Quarto, so nothing else has to be installed.
+
+## Links
+
+- [Reference](reference.qmd) for every option.
+- [Examples](examples.qmd) for worked invoices.
+- [A rendered invoice](preview.pdf), built by this site.
+- [Changelog](changelog.qmd) for what each release changed.
+- [Source and issues](https://github.com/mcanouil/quarto-invoice) on GitHub.

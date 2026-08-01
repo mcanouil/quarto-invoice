@@ -1,0 +1,44 @@
+---
+title: "An invoice"
+format:
+  invoice-typst:
+    lang: en
+    region: GB
+    papersize: a4
+    sender:
+      name: "Example Consulting Ltd"
+      email: "accounts@example.com"
+      registration: "12345678"
+      vat: "GB123456789"
+      address:
+        street: "35 Anthony Road"
+        zip: "IP3 5RT"
+        city: "Ipswich"
+        country: "United Kingdom"
+    recipient:
+      name: "Director Doe & Co"
+      address:
+        street: "1 Example Street"
+        zip: "EC1A 1BB"
+        city: "London"
+        country: "United Kingdom"
+    invoice:
+      number: "INV-2026-001"
+      issued: 2026-05-01
+      due: 2026-05-31
+      reference: "ACME-2026-001"
+      currency: GBP
+      items:
+        - description: "Strategy workshop"
+          details: "Two-day on-site facilitation."
+          quantity: 2
+          unit-price: 1500
+          vat: 20
+        - description: "Follow-up report"
+          quantity: 1
+          unit-price: 850
+          vat: 20
+    bank:
+      bic: "EXAMPGB2L"
+      iban: "GB00 EXAM 0000 0000 0000 00"
+---
