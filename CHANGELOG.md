@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.2 (2026-08-01)
+
 ### Documentation
 
 - docs: Add a documentation website under `docs/`, built on the `atelier` project type and published to <https://m.canouil.dev/quarto-invoice/>, rendering an invoice with the format itself.
