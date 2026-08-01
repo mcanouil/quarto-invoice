@@ -10,6 +10,8 @@ This page is the front matter behind it, and two variations.
 ## The invoice on this site
 
 ```yaml
+title: "Consultancy, May 2026"
+description: "Strategy workshop and follow-up report."
 format:
   invoice-typst:
     lang: en
@@ -94,7 +96,11 @@ format:
       number: "INV-2026-002"
       issued: 2026-05-01
       due: 2026-05-31
+      reference: "ACME-2026-002"
       currency: GBP
+    bank:
+      bic: "EXAMPGB2L"
+      iban: "GB00 EXAM 0000 0000 0000 00"
 ---
 
 ```{=typst}
@@ -113,10 +119,22 @@ Nothing is computed in that case; the table is yours.
 ```yaml
 invoice:
   fee: 5
-  penalty: 40
+  penalty: "£40"
 ```
 
-`fee` is a percentage. `penalty` is formatted in the invoice currency when it is a number, and used as written when it is a string, which is how a statutory wording is set.
+`fee` is a percentage.
+`penalty` is set as written, so give it with its currency symbol, or with a statutory wording in place of an amount.
+Leaving it out gives the literal `€40`, whatever the invoice currency.
+
+## A title above the totals
+
+```yaml
+title: "Consultancy, May 2026"
+description: "Strategy workshop and follow-up report."
+```
+
+The title is set as a heading above the totals table, and the description in italics under it.
+The description is read only when there is a title.
 
 ## Source
 

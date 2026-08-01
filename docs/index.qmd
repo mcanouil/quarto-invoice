@@ -62,18 +62,22 @@ format:
       issued: 2026-05-01
       due: 2026-05-31
       currency: GBP
+      reference: "ACME-2026-001"
       items:
         - description: Strategy workshop
           quantity: 2
           unit-price: 1500
           vat: 20
+    bank:
+      bic: "EXAMPGB2L"
+      iban: "GB00 EXAM 0000 0000 0000 00"
 ```
 
 ```bash
 quarto render invoice.qmd --to invoice-typst
 ```
 
-`sender`, `recipient`, and `invoice` are required; the rest is filled in when it is given.
+`sender`, `recipient`, `invoice`, and `bank` are required; the rest is filled in when it is given.
 
 See the [Reference](reference.qmd) for every option, and the [Examples](examples.qmd) for a branded invoice and a hand-written table.
 

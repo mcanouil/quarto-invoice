@@ -1,5 +1,6 @@
 ---
-title: "An invoice"
+title: "Consultancy, May 2026"
+description: "Strategy workshop and follow-up report."
 format:
   invoice-typst:
     lang: en

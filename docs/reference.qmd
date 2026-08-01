@@ -14,17 +14,31 @@ format: invoice-typst
 quarto render invoice.qmd --to invoice-typst
 ```
 
+## The document
+
+| Option | Description |
+| --- | --- |
+| `title` | Set above the totals table, as a heading. |
+| `description` | Set under the title, in italics. Read only when `title` is set. |
+| `logo` | A path to an image, set beside the invoice details. Falls back to `brand.logo`. |
+| `papersize` | The paper. `a4` unless set. |
+| `margin` | A mapping of Typst page margins, `x` and `y` by default. |
+| `lang`, `region` | Passed to Typst, and `lang` also chooses the number separators. |
+| `mainfont`, `fontsize` | Fall back to `brand.typography.base.family` and `.size`. |
+
+: Options outside the three blocks. {.striped .hover tbl-colwidths="[24,76]"}
+
 ## Sender and recipient
 
-Both are required.
+Both are required, and rendering fails without them.
 
 | Option | Description |
 | --- | --- |
 | `sender.name` | Required. |
-| `sender.email` | |
+| `sender.email` | Set as a `mailto:` link. |
 | `sender.registration` | Company registration number. |
 | `sender.vat` | VAT number. |
-| `sender.exempted` | The wording of a VAT exemption notice. |
+| `sender.exempted` | The wording of a VAT exemption notice, set in grey under the totals. |
 | `sender.address` | `street`, `zip`, `city`, `state`, `country`. |
 | `recipient.name` | Required. |
 | `recipient.address` | The same address fields. |
@@ -33,18 +47,26 @@ Both are required.
 
 ## The invoice block
 
-| Option | Description |
-| --- | --- |
-| `invoice.number` | The invoice number. |
-| `invoice.issued` | Issue date, as `YYYY-MM-DD`. |
-| `invoice.due` | Due date, as `YYYY-MM-DD`. |
-| `invoice.reference` | A payment reference for the transfer. |
-| `invoice.currency` | An ISO 4217 code: `EUR`, `USD`, `GBP`, `CHF`, `JPY`. |
-| `invoice.fee` | A late payment fee, as a percentage. |
-| `invoice.penalty` | Recovery costs. A number is formatted in the invoice currency; a string is used as written. |
-| `invoice.items` | The line items. See below. |
+Required, along with `invoice.number`, `invoice.issued`, and `invoice.due`.
 
-: The invoice block. {.striped .hover tbl-colwidths="[28,72]"}
+| Option | Default | Description |
+| --- | --- | --- |
+| `invoice.number` | | The invoice number. |
+| `invoice.issued` | | Issue date, as `YYYY-MM-DD`. |
+| `invoice.due` | | Due date, as `YYYY-MM-DD`. |
+| `invoice.reference` | | A payment reference for the transfer. Set in the bank block, so it appears only when `bank` is given. |
+| `invoice.currency` | `EUR` | An ISO 4217 code, `GBP` for example. |
+| `invoice.fee` | `2.28` | A late payment fee, as a percentage. |
+| `invoice.penalty` | `€40` | Recovery costs, set as written. |
+| `invoice.items` | | The line items. See below. |
+
+: The invoice block. {.striped .hover tbl-colwidths="[22,12,66]"}
+
+::: {.callout-warning}
+`invoice.penalty` reaches Typst as a string whatever it is written as, so a number is set as a bare figure rather than in the invoice currency: `penalty: 40` on a `GBP` invoice reads `40`, not `£40`.
+Write the amount with its symbol, as `penalty: "£40"`.
+The default when it is left out is the literal `€40`, in every currency.
+:::
 
 ### Line items
 
@@ -58,17 +80,18 @@ invoice:
       vat: 20
 ```
 
-| Field | Description |
-| --- | --- |
-| `description` | A short description. |
-| `details` | A longer one, set below the item. |
-| `quantity` | |
-| `unit-price` | Excluding VAT. |
-| `vat` | The rate, as a percentage. |
+| Field | Default | Description |
+| --- | --- | --- |
+| `description` | | A short description. Required. |
+| `details` | | A longer one, set below the item. |
+| `quantity` | `1` | |
+| `unit-price` | `0` | Excluding VAT. |
+| `vat` | `0` | The rate, as a percentage. |
 
-: The fields of a line item. {.striped .hover tbl-colwidths="[24,76]"}
+: The fields of a line item. {.striped .hover tbl-colwidths="[20,12,68]"}
 
 The subtotal excluding VAT, the VAT, and the grand total are computed from these.
+A quantity that is a whole number is set without a decimal part, and the VAT rate is set as a whole percentage.
 
 ::: {.callout-note}
 Leave `invoice.items` out and the body of the document is rendered in its place instead, which is how a hand-written Typst table is kept working.
@@ -76,24 +99,32 @@ Leave `invoice.items` out and the body of the document is rendered in its place 
 
 ## Bank details
 
-`bank.bic` and `bank.iban`, printed for payment.
+`bank.bic` and `bank.iban`, set under a payment heading at the foot of the page along with `invoice.reference`.
+
+::: {.callout-important}
+Both keys have to be present.
+An invoice with no `bank` block fails to compile, so give the block even when the payment details are not yet known.
+:::
 
 ## Currency
 
 Amounts are formatted with the decimal and thousand separators of the document's `lang`, so the same figures read correctly in English and in French.
 
-A currency code with no built-in symbol is printed as the code followed by a space.
+Twenty-six ISO 4217 codes carry a symbol, `EUR`, `USD`, `GBP`, `JPY`, and `CHF` among them.
+A code with no symbol is set as the code followed by a space.
+
+`SEK`, `NOK`, `DKK`, `PLN`, `CZK`, and `CHF` put the symbol after the amount; every other currency puts it before.
 
 ## Validation
 
 ::: {.callout-important}
-`invoice.due` must fall on or after `invoice.issued`.
-Inverted dates raise an error while rendering rather than producing a document nobody would notice was wrong.
+`invoice.issued` and `invoice.due` must both be `YYYY-MM-DD`, and `invoice.due` must fall on or after `invoice.issued`.
+Either mistake raises an error while rendering rather than producing a document nobody would notice was wrong.
 :::
 
 ## Branding
 
-The format reads [`_brand.yml`](https://posit-dev.github.io/brand-yml/) for typography and heading colour:
+The format reads [`_brand.yml`](https://posit-dev.github.io/brand-yml/) for the logo, the base font and size, and the heading family, weight, style, colour, and line height:
 
 ```yaml
 brand:
