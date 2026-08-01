@@ -1,0 +1,141 @@
+---
+title: "Examples"
+subtitle: "Worked invoices."
+description: "The front matter behind the rendered invoice, plus a branded one and a hand-written table."
+---
+
+The [rendered invoice](preview.pdf) on this site is built by the format as the site is published.
+This page is the front matter behind it, and two variations.
+
+## The invoice on this site
+
+```yaml
+title: "Consultancy, May 2026"
+description: "Strategy workshop and follow-up report."
+format:
+  invoice-typst:
+    lang: en
+    region: GB
+    papersize: a4
+    sender:
+      name: "Example Consulting Ltd"
+      email: "accounts@example.com"
+      registration: "12345678"
+      vat: "GB123456789"
+      address:
+        street: "35 Anthony Road"
+        zip: "IP3 5RT"
+        city: "Ipswich"
+        country: "United Kingdom"
+    recipient:
+      name: "Director Doe & Co"
+      address:
+        street: "1 Example Street"
+        zip: "EC1A 1BB"
+        city: "London"
+        country: "United Kingdom"
+    invoice:
+      number: "INV-2026-001"
+      issued: 2026-05-01
+      due: 2026-05-31
+      reference: "ACME-2026-001"
+      currency: GBP
+      items:
+        - description: "Strategy workshop"
+          details: "Two-day on-site facilitation."
+          quantity: 2
+          unit-price: 1500
+          vat: 20
+        - description: "Follow-up report"
+          quantity: 1
+          unit-price: 850
+          vat: 20
+    bank:
+      bic: "EXAMPGB2L"
+      iban: "GB00 EXAM 0000 0000 0000 00"
+```
+
+The document body is empty: with `invoice.items` set, the totals table takes its place.
+
+## A branded invoice
+
+```yaml
+brand:
+  typography:
+    fonts:
+      - family: Alegreya Sans
+        source: google
+        weight: [400, 700]
+        style: [normal, italic]
+    base:
+      family: "Alegreya Sans"
+      size: 12pt
+    headings:
+      family: "Alegreya Sans"
+      color: dodgerblue
+format:
+  invoice-typst:
+    logo: logo.png
+```
+
+The format reads `_brand.yml` for typography and heading colour, so an invoice matches the rest of a practice's documents without a separate theme.
+
+## A hand-written table
+
+Leave `invoice.items` out and the body is rendered in its place:
+
+````markdown
+---
+format:
+  invoice-typst:
+    sender:
+      name: "Example Consulting Ltd"
+    recipient:
+      name: "Director Doe & Co"
+    invoice:
+      number: "INV-2026-002"
+      issued: 2026-05-01
+      due: 2026-05-31
+      reference: "ACME-2026-002"
+      currency: GBP
+    bank:
+      bic: "EXAMPGB2L"
+      iban: "GB00 EXAM 0000 0000 0000 00"
+---
+
+```{=typst}
+#table(
+  columns: 3,
+  [*Item*], [*Quantity*], [*Amount*],
+  [Consultancy], [1], [£1,200.00],
+)
+```
+````
+
+Nothing is computed in that case; the table is yours.
+
+## Late payment terms
+
+```yaml
+invoice:
+  fee: 5
+  penalty: "£40"
+```
+
+`fee` is a percentage.
+`penalty` is set as written, so give it with its currency symbol, or with a statutory wording in place of an amount.
+Leaving it out gives the literal `€40`, whatever the invoice currency.
+
+## A title above the totals
+
+```yaml
+title: "Consultancy, May 2026"
+description: "Strategy workshop and follow-up report."
+```
+
+The title is set as a heading above the totals table, and the description in italics under it.
+The description is read only when there is a title.
+
+## Source
+
+The repository ships a complete starting point you can copy: [`template.qmd`](https://github.com/mcanouil/quarto-invoice/blob/main/template.qmd), and a branded example under [`examples/`](https://github.com/mcanouil/quarto-invoice/tree/main/examples).

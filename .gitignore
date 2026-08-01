@@ -4,3 +4,5 @@ template-brand.pdf
 index.pdf
 /examples/index-brand.pdf
 .quarto/
+/.quarto/
+**/*.quarto_ipynb
