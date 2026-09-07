@@ -20,9 +20,15 @@ website:
   title: "Invoice"
   description: "A Quarto format for invoices: sender, recipient, line items, VAT, and bank details, rendered to PDF through Typst."
   # No trailing slash: Quarto builds the social image URL by concatenating this
-  # with a leading-slash image path, without normalising.
+  # with the image path, without normalising.
   site-url: &site-url https://m.canouil.dev/quarto-invoice
   repo-url: https://github.com/mcanouil/quarto-invoice
+  open-graph:
+    image: assets/social/og-image.png
+    image-alt: "The quarto-invoice social card: the extension name and the \"format\" badge over the line \"Generate professional PDF invoices with Typst\", beside a dark code window showing invoice.qmd."
+  twitter-card:
+    image: assets/social/og-image.png
+    image-alt: "The quarto-invoice social card: the extension name and the \"format\" badge over the line \"Generate professional PDF invoices with Typst\", beside a dark code window showing invoice.qmd."
   # The Quarto project root is docs/, so the edit and issue links need the
   # subdirectory; without it they point at the repository root and 404.
   repo-subdir: docs
