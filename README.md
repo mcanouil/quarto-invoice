@@ -7,13 +7,13 @@ The totals table is computed from the line items, so the arithmetic is not yours
 ## Creating a New Invoice
 
 ```bash
-quarto use template mcanouil/quarto-invoice@2.0.2
+quarto use template mcanouil/quarto-invoice@2.0.3
 ```
 
 ## Installation For Existing Document
 
 ```bash
-quarto add mcanouil/quarto-invoice@2.0.2
+quarto add mcanouil/quarto-invoice@2.0.3
 ```
 
 This will install the extension under the `_extensions` subdirectory.
