@@ -9,3 +9,4 @@ contributes:
     project:
       brand: brand.yml
 source: mcanouil/quarto-pastel@0.1.2
+source-type: registry
