@@ -23,7 +23,7 @@ quarto render invoice.qmd --to invoice-typst
 | `logo` | A path to an image, set beside the invoice details. Falls back to `brand.logo`. |
 | `papersize` | The paper. `a4` unless set. |
 | `margin` | A mapping of Typst page margins, `x` and `y` by default. |
-| `lang`, `region` | Passed to Typst, and `lang` also chooses the number separators. |
+| `lang`, `region` | Passed to Typst. `lang` also chooses the number separators and the language of the labels. |
 | `mainfont`, `fontsize` | Fall back to `brand.typography.base.family` and `.size`. |
 
 : Options outside the three blocks. {.striped .hover tbl-colwidths="[24,76]"}
@@ -115,6 +115,97 @@ A code with no symbol is set as the code followed by a space.
 
 `SEK`, `NOK`, `DKK`, `PLN`, `CZK`, and `CHF` put the symbol after the amount; every other currency puts it before.
 
+## Language
+
+The format sets each label and sentence from a Quarto [`language`](https://quarto.org/docs/authoring/language.html) key.
+English is the default.
+The format also includes French translations, which it uses when `lang: fr` is set.
+Any other `lang` value gives the English text.
+
+To change one string, set its key under your language code:
+
+```yaml
+lang: fr
+sender:
+  registration: "12245/FR12334"
+language:
+  fr:
+    invoice-registration: "SIREN/SIRET"
+```
+
+The invoice then shows `SIREN/SIRET: 12245/FR12334`.
+The other French strings do not change.
+
+::: {.callout-important}
+Put each key under the language code that matches `lang`, for example `fr:` or `en:`.
+With Quarto 1.10, Quarto ignores a key at the top level of `language`.
+:::
+
+You can also keep your strings in a translation file.
+Give the path of the file as the value of `language`, and put the keys under the language code in the file:
+
+```yaml
+lang: fr
+language: my-labels.yml
+```
+
+```{.yaml filename="my-labels.yml"}
+fr:
+  invoice-registration: "SIREN/SIRET"
+en:
+  invoice-registration: "Company number"
+```
+
+The values in the file replace the values of the format for the same keys.
+Quarto 1.11.4 and later also read one file for each language next to the main file, for example `my-labels-fr.yml` with the keys at the top level.
+
+| Key | English default |
+| --- | --- |
+| `invoice-title` | `Invoice` |
+| `invoice-registration` | `Registration number` |
+| `invoice-vat-number` | `VAT number` |
+| `invoice-number` | `Invoice number` |
+| `invoice-issued` | `Issued on` |
+| `invoice-due` | `Payment due date` |
+| `invoice-payment-title` | `Payment information` |
+| `invoice-reference` | `Reference` |
+| `invoice-reference-note` | `To be used as label on your bank transfer to identify the transaction.` |
+| `invoice-item-details` | `Details` |
+| `invoice-item-quantity` | `Qty` |
+| `invoice-item-unit-price` | `Unit price` |
+| `invoice-item-vat` | `VAT %` |
+| `invoice-item-total` | `Total excl. VAT` |
+| `invoice-total-excl` | `Total excl. VAT` |
+| `invoice-total-vat` | `VAT` |
+| `invoice-total-incl` | `Total` |
+| `invoice-terms` | The payment terms at the foot of the page. |
+| `invoice-months` | `January, February, ..., December` |
+| `invoice-date` | `the {day}{ordinal} of {month}, {year}` |
+| `invoice-ordinals` | `st, nd, rd, th, ...` |
+
+: The language keys. {.striped .hover tbl-colwidths="[34,66]"}
+
+`invoice-title` is the first word of the PDF title, before the invoice number.
+The French values are in [`_extension.yml`](https://github.com/mcanouil/quarto-invoice/blob/main/_extensions/invoice/_extension.yml).
+
+`invoice-terms` uses these placeholders: `{sender}`, `{date}`, `{days}`, `{fee}`, and `{penalty}`.
+The format replaces each placeholder with its value.
+You can change the order of the placeholders to suit the grammar of your language.
+
+The date of issue in `invoice-terms` comes from three keys:
+
+- `invoice-months` gives the twelve month names, separated by commas.
+- `invoice-ordinals` gives the suffix for each day of the month, separated by commas. When the list has fewer than 31 items, the last item applies to the remaining days.
+- `invoice-date` puts the parts together with the placeholders `{day}`, `{ordinal}`, `{month}`, and `{year}`.
+
+The French values give `1er janvier 2026`.
+
+::: {.callout-warning}
+Do not use a backtick (`` ` ``) in a value.
+This character stops the Typst compilation.
+All other characters, quotation marks and backslashes included, appear as you write them.
+:::
+
 ## Validation
 
 ::: {.callout-important}
@@ -146,3 +237,4 @@ A self-contained example lives under [`examples/`](https://github.com/mcanouil/q
 
 - PDF through Typst only.
 - The totals table is generated from `invoice.items`; mixing it with a hand-written table means choosing one or the other.
+- The format includes English and French text only. For another language, set each key under the code of that language.
