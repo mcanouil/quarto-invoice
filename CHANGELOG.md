@@ -4,7 +4,8 @@
 
 ### Bug Fixes
 
-- fix: Use New Computer Modern, which Typst includes, as the default font in place of Alegreya Sans, and tighten the top and bottom margins and the space above the payment terms, so a French invoice stays on one page.
+- fix: Use New Computer Modern, which Typst includes, as the default font in place of Alegreya Sans.
+- fix: Tighten the top and bottom margins and the space above the payment terms, so a French invoice fits on one page.
 
 ## 2.1.1 (2026-10-14)
 
