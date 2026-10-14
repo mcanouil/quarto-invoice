@@ -241,3 +241,16 @@ A self-contained example lives under [`examples/`](https://github.com/mcanouil/q
 - PDF through Typst only.
 - The totals table is generated from `invoice.items`; mixing it with a hand-written table means choosing one or the other.
 - The format includes English and French text only. For another language, set each key under the code of that language.
+- The format makes a PDF only. It does not make a structured electronic invoice, such as Factur-X, UBL, or CII.
+
+::: {.callout-warning title="Electronic invoicing in France"}
+From 1 September 2027, all businesses in France must issue electronic invoices for sales to other businesses subject to VAT in France.
+These invoices go through an approved platform (*plateforme agréée*) in a structured format.
+For these sales, a PDF from this format is not a valid invoice.
+
+Sales to private customers and to customers outside France are not in the scope of electronic invoicing.
+For these sales, the PDF stays valid, and you send the sale data to the tax administration through e-reporting.
+
+Large and mid-sized businesses have had these obligations since 1 September 2026.
+Support for Factur-X is tracked in [#47](https://github.com/mcanouil/quarto-invoice/issues/47).
+:::
