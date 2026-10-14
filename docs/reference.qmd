@@ -191,7 +191,7 @@ The English values are in [`_language.yml`](https://github.com/mcanouil/quarto-i
 To translate the invoice into another language, for example German:
 
 1. Create `my-labels.yml` next to your document, with a `de:` line.
-2. Copy the content of `_language-fr.yml` under that line, indented by two spaces, and translate the values.
+2. Copy the content of `_language.yml` under that line, indented by two spaces, and translate the values. `_language-fr.yml` shows a finished translation.
 3. Set `lang: de` and `language: my-labels.yml` in your document.
 
 `invoice-terms` uses these placeholders: `{sender}`, `{date}`, `{days}`, `{fee}`, and `{penalty}`.
