@@ -300,7 +300,7 @@
         sender: sender.at("name").replace("\\", ""),
         date: format-date(issued, labels),
         days: count-days(issued, due),
-        fee: str(invoice-fee),
+        fee: format-amount(invoice-fee, lang: lang, region: region, decimals: str(invoice-fee).split(".").at(1, default: "").len()),
         penalty: penalty-display,
       )))
     )
