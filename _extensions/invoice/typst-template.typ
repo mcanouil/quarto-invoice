@@ -263,16 +263,7 @@
       }
     }
 
-    let auto-table = items-table(invoice-items, money, labels: (
-      details: labels.item-details,
-      quantity: labels.item-quantity,
-      unit-price: labels.item-unit-price,
-      vat: labels.item-vat,
-      total: labels.item-total,
-      total-excl: labels.total-excl,
-      total-vat: labels.total-vat,
-      total-incl: labels.total-incl,
-    ))
+    let auto-table = items-table(invoice-items, money, labels)
     if auto-table != none {
       auto-table
     } else {
