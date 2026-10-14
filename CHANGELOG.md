@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.1.1 (2026-10-14)
+
 ### Documentation
 
 - docs: Explain that the PDF is not a valid invoice for sales between businesses subject to VAT in France once electronic invoicing applies. (#48)
