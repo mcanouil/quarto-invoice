@@ -72,6 +72,29 @@ $if(bank)$
     bic: "$bank.bic$"
   ),
 $endif$
+  labels: (
+    title: [`$quarto.language.invoice-title$`].text,
+    registration: [`$quarto.language.invoice-registration$`].text,
+    vat-number: [`$quarto.language.invoice-vat-number$`].text,
+    number: [`$quarto.language.invoice-number$`].text,
+    issued: [`$quarto.language.invoice-issued$`].text,
+    due: [`$quarto.language.invoice-due$`].text,
+    payment-title: [`$quarto.language.invoice-payment-title$`].text,
+    reference: [`$quarto.language.invoice-reference$`].text,
+    reference-note: [`$quarto.language.invoice-reference-note$`].text,
+    item-details: [`$quarto.language.invoice-item-details$`].text,
+    item-quantity: [`$quarto.language.invoice-item-quantity$`].text,
+    item-unit-price: [`$quarto.language.invoice-item-unit-price$`].text,
+    item-vat: [`$quarto.language.invoice-item-vat$`].text,
+    item-total: [`$quarto.language.invoice-item-total$`].text,
+    total-excl: [`$quarto.language.invoice-total-excl$`].text,
+    total-vat: [`$quarto.language.invoice-total-vat$`].text,
+    total-incl: [`$quarto.language.invoice-total-incl$`].text,
+    terms: [`$quarto.language.invoice-terms$`].text,
+    months: [`$quarto.language.invoice-months$`].text,
+    date: [`$quarto.language.invoice-date$`].text,
+    ordinals: [`$quarto.language.invoice-ordinals$`].text,
+  ),
 $if(lang)$
   lang: "$lang$",
 $endif$
