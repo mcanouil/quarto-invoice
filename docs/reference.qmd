@@ -200,6 +200,9 @@ The date of issue in `invoice-terms` comes from three keys:
 
 The French values give `1er janvier 2026`.
 
+An empty value gives the English text.
+To remove the suffix after the day, remove `{ordinal}` from `invoice-date`.
+
 ::: {.callout-warning}
 Do not use a backtick (`` ` ``) in a value.
 This character stops the Typst compilation.
