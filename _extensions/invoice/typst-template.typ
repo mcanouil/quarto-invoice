@@ -89,10 +89,10 @@
   penalty: 40,
   currency: "EUR",
   paper: "a4",
-  margin: (x: 2.5cm, y: 2.5cm),
+  margin: (x: 2.5cm, y: 2cm),
   lang: "en",
   region: "UK",
-  font: "Alegreya Sans",
+  font: "New Computer Modern",
   heading-family: none,
   heading-weight: "bold",
   heading-style: "normal",
@@ -293,7 +293,7 @@
       hide("a")
     }
 
-    v(fontsize * 2)
+    v(fontsize * 1)
 
     text(luma(100),
       emph(fill(labels.terms, (

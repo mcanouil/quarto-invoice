@@ -24,7 +24,7 @@ quarto render invoice.qmd --to invoice-typst
 | `papersize` | The paper. `a4` unless set. |
 | `margin` | A mapping of Typst page margins, `x` and `y` by default. |
 | `lang`, `region` | Passed to Typst. `lang` also chooses the number separators and the language of the labels. |
-| `mainfont`, `fontsize` | Fall back to `brand.typography.base.family` and `.size`. |
+| `mainfont`, `fontsize` | Fall back to `brand.typography.base.family` and `.size`. Without either, the font is New Computer Modern, which Typst includes, at 12pt. |
 
 : Options outside the three blocks. {.striped .hover tbl-colwidths="[24,76]"}
 
