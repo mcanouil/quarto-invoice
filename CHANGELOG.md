@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### New Features
+
+- feat: Ship the English and French strings as `_language.yml` and `_language-fr.yml`, which you can copy to translate the invoice into another language. (#44)
+
+### Build
+
+- build: Require Quarto 1.11.4 or later. (#44)
+
 ## 2.1.1 (2026-10-14)
 
 ### Documentation
@@ -13,7 +21,6 @@
 ### New Features
 
 - feat: Read every label, the payment terms and the date from Quarto `language` keys, so you can override any string, with French translations for `lang: fr`. (#43)
-- feat: Ship the English and French strings as `_language.yml` and `_language-fr.yml`, which you can copy to translate the invoice into another language. (#44)
 
 ### Build
 

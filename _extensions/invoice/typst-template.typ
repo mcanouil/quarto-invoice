@@ -68,6 +68,9 @@
   labels: none,
   body
 ) = {
+  if labels == none {
+    panic("invoice() needs a labels dictionary, which typst-show.typ builds from the invoice-* language keys.")
+  }
 
   show heading: it => {
     set par(leading: heading-line-height)
