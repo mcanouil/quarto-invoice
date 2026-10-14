@@ -190,8 +190,8 @@ Quarto also reads one file for each language next to the main file, for example 
 The English values are in [`_language.yml`](https://github.com/mcanouil/quarto-invoice/blob/main/_extensions/invoice/_language.yml), and the French values are in [`_language-fr.yml`](https://github.com/mcanouil/quarto-invoice/blob/main/_extensions/invoice/_language-fr.yml).
 To translate the invoice into another language, for example German:
 
-1. Copy `_language-fr.yml` next to your document as `my-labels-de.yml`, and translate its values.
-2. Create `my-labels.yml` next to it with `{}` as its only content. Quarto needs this file to exist and to hold valid YAML.
+1. Create `my-labels.yml` next to your document, with a `de:` line.
+2. Copy the content of `_language-fr.yml` under that line, indented by two spaces, and translate the values.
 3. Set `lang: de` and `language: my-labels.yml` in your document.
 
 `invoice-terms` uses these placeholders: `{sender}`, `{date}`, `{days}`, `{fee}`, and `{penalty}`.
@@ -206,7 +206,7 @@ The date of issue in `invoice-terms` comes from three keys:
 
 The French values give `1er janvier 2026`.
 
-An empty value leaves the text empty.
+An empty value leaves the text empty, except for `invoice-months`, which must always list twelve names.
 For example, `invoice-ordinals: ""` removes the suffix after the day.
 
 ::: {.callout-warning}
