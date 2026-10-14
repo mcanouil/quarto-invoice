@@ -31,16 +31,7 @@
 #let items-table(
   items,
   format-money,
-  labels: (
-    details: "Details",
-    quantity: "Qty",
-    unit-price: "Unit price",
-    vat: "VAT %",
-    total: "Total excl. VAT",
-    total-excl: "Total excl. VAT",
-    total-vat: "VAT",
-    total-incl: "Total",
-  ),
+  labels,
 ) = {
   if items == none or items.len() == 0 {
     return none
@@ -50,11 +41,11 @@
   let footer-fill = luma(240)
   let cells = ()
 
-  cells.push(table.cell(fill: header-fill, [*#labels.details*]))
-  cells.push(table.cell(fill: header-fill, [*#labels.quantity*]))
-  cells.push(table.cell(fill: header-fill, [*#labels.unit-price*]))
-  cells.push(table.cell(fill: header-fill, [*#labels.vat*]))
-  cells.push(table.cell(fill: header-fill, [*#labels.total*]))
+  cells.push(table.cell(fill: header-fill, [*#labels.item-details*]))
+  cells.push(table.cell(fill: header-fill, [*#labels.item-quantity*]))
+  cells.push(table.cell(fill: header-fill, [*#labels.item-unit-price*]))
+  cells.push(table.cell(fill: header-fill, [*#labels.item-vat*]))
+  cells.push(table.cell(fill: header-fill, [*#labels.item-total*]))
 
   for item in items {
     let description = item.at("description", default: "")

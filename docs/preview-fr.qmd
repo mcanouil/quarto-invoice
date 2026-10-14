@@ -1,0 +1,48 @@
+---
+title: "Conseil, mai 2026"
+description: "Atelier stratégique et rapport de suivi."
+format:
+  invoice-typst:
+    lang: fr
+    region: FR
+    papersize: a4
+    sender:
+      name: "Exemple Conseil SARL"
+      email: "compta@example.com"
+      registration: "123 456 789 / 123 456 789 00012"
+      vat: "FR12123456789"
+      address:
+        street: "12 rue de la Paix"
+        zip: "75002"
+        city: "Paris"
+        country: "France"
+    recipient:
+      name: "Doe & Associés"
+      address:
+        street: "1 place Bellecour"
+        zip: "69002"
+        city: "Lyon"
+        country: "France"
+    invoice:
+      number: "FAC-2026-001"
+      issued: 2026-05-01
+      due: 2026-05-31
+      reference: "EXEMPLE-2026-001"
+      currency: EUR
+      items:
+        - description: "Atelier stratégique"
+          details: "Deux jours d'animation sur site."
+          quantity: 2
+          unit-price: 1500
+          vat: 20
+        - description: "Rapport de suivi"
+          quantity: 1
+          unit-price: 850
+          vat: 20
+    bank:
+      bic: "EXAMPFRPP"
+      iban: "FR76 0000 0000 0000 0000 0000 000"
+language:
+  fr:
+    invoice-registration: "SIREN/SIRET"
+---

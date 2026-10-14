@@ -1,7 +1,7 @@
 title: Invoice
 author: Mickaël Canouil
 version: 2.0.3
-quarto-required: ">=1.9.37"
+quarto-required: ">=1.10.19"
 contributes:
   formats:
     typst:
@@ -12,3 +12,26 @@ contributes:
         - typst-show.typ
         - typst-currency.typ
         - typst-items.typ
+      language:
+        fr:
+          invoice-title: "Facture"
+          invoice-registration: "Numéro d'immatriculation"
+          invoice-vat-number: "Numéro de TVA"
+          invoice-number: "Numéro de facture"
+          invoice-issued: "Date d'émission"
+          invoice-due: "Date d'échéance"
+          invoice-payment-title: "Informations de paiement"
+          invoice-reference: "Référence"
+          invoice-reference-note: "À indiquer comme libellé de votre virement pour identifier la transaction."
+          invoice-item-details: "Désignation"
+          invoice-item-quantity: "Qté"
+          invoice-item-unit-price: "Prix unitaire"
+          invoice-item-vat: "TVA %"
+          invoice-item-total: "Total HT"
+          invoice-total-excl: "Total HT"
+          invoice-total-vat: "TVA"
+          invoice-total-incl: "Total TTC"
+          invoice-terms: "{sender} vous a adressé cette facture le {date}. Elle doit être réglée sous {days} jours, faute de quoi des pénalités de retard au taux de {fee} % et une indemnité forfaitaire de {penalty} pour frais de recouvrement seront exigibles. Aucun escompte ne sera accordé en cas de paiement anticipé."
+          invoice-months: "janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre"
+          invoice-date: "{day}{ordinal} {month} {year}"
+          invoice-ordinals: "er, "

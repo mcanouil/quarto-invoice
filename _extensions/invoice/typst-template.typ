@@ -7,20 +7,69 @@
   datetime(year: parts.at(0), month: parts.at(1), day: parts.at(2))
 }
 
-#let format-date(date) = {
+#let default-labels = (
+  title: "Invoice",
+  registration: "Registration number",
+  vat-number: "VAT number",
+  number: "Invoice number",
+  issued: "Issued on",
+  due: "Payment due date",
+  payment-title: "Payment information",
+  reference: "Reference",
+  reference-note: "To be used as label on your bank transfer to identify the transaction.",
+  item-details: "Details",
+  item-quantity: "Qty",
+  item-unit-price: "Unit price",
+  item-vat: "VAT %",
+  item-total: "Total excl. VAT",
+  total-excl: "Total excl. VAT",
+  total-vat: "VAT",
+  total-incl: "Total",
+  terms: "{sender} sent you this invoice on {date}. The invoice must be paid in under {days} days, otherwise you will have to pay a late fee of {fee} % and a {penalty} penalty for recovery costs. No discount will be granted for early settlement.",
+  months: "January, February, March, April, May, June, July, August, September, October, November, December",
+  date: "the {day}{ordinal} of {month}, {year}",
+  ordinals: "st, nd, rd, th, th, th, th, th, th, th, th, th, th, th, th, th, th, th, th, th, st, nd, rd, th, th, th, th, th, th, th, st",
+)
+
+#let resolve-labels(labels) = {
+  let resolved = default-labels
+  if labels != none {
+    for (key, value) in labels {
+      if value != none and value != "" {
+        resolved.insert(key, value)
+      }
+    }
+  }
+  resolved
+}
+
+#let split-list(value) = value.split(",").map(str.trim)
+
+#let fill(template, values) = {
+  let out = []
+  let cursor = 0
+  for match in template.matches(regex("\{([a-z]+)\}")) {
+    out += template.slice(cursor, match.start)
+    out += values.at(match.captures.at(0), default: match.text)
+    cursor = match.end
+  }
+  out + template.slice(cursor)
+}
+
+#let format-date(date, labels) = {
   let day = date.day()
-  let ord = super(if 10 < day and day < 20 {
-    "th"
-  } else if calc.rem(day, 10) == 1 {
-    "st"
-  } else if calc.rem(day, 10) == 2 {
-    "nd"
-  } else if calc.rem(day, 10) == 3 {
-    "rd"
-  } else {
-    "th"
-  })
-  [the #day#ord of #date.display("[month repr:long]"), #date.year()]
+  let ordinals = split-list(labels.ordinals)
+  let ordinal = ordinals.at(calc.min(day, ordinals.len()) - 1)
+  let months = split-list(labels.months)
+  if months.len() != 12 {
+    panic("Language key 'invoice-months' must list 12 month names separated by commas, found " + str(months.len()) + ": '" + labels.months + "'.")
+  }
+  fill(labels.date, (
+    day: str(day),
+    ordinal: if ordinal == "" { [] } else { super(ordinal) },
+    month: months.at(date.month() - 1),
+    year: str(date.year()),
+  ))
 }
 
 #let count-days(x, y) = {
@@ -52,8 +101,10 @@
   heading-line-height: 0.65em,
   fontsize: 12pt,
   title-size: 1.5em,
+  labels: none,
   body
 ) = {
+  let labels = resolve-labels(labels)
 
   show heading: it => {
     set par(leading: heading-line-height)
@@ -93,7 +144,7 @@
   }
 
   set document(
-    title: "Invoice " + invoice.at("number").replace("\\", "") + " - " + recipient.at("name").replace("\\", ""),
+    title: labels.title + " " + invoice.at("number").replace("\\", "") + " - " + recipient.at("name").replace("\\", ""),
     author: sender.at("name").replace("\\", ""),
     date: issued
   )
@@ -161,14 +212,14 @@
     columns: (50%, 50%),
     align(left, {
       if "registration" in sender and sender != none and sender.at("registration") != "" {
-        "Registration number: " + sender.at("registration").replace("\\", "")
+        labels.registration + ": " + sender.at("registration").replace("\\", "")
         linebreak()
       } else {
         hide("a")
       }
 
       if "vat" in sender and sender != none and sender.at("vat") != "" {
-        "VAT number: " + sender.at("vat").replace("\\", "")
+        labels.vat-number + ": " + sender.at("vat").replace("\\", "")
       } else {
         hide("a")
       }
@@ -176,21 +227,21 @@
       v(fontsize * 1)
 
       if "number" in invoice and invoice != none and invoice.at("number") != "" {
-        "Invoice number: " + invoice.at("number").replace("\\", "")
+        labels.number + ": " + invoice.at("number").replace("\\", "")
         linebreak()
       } else {
         hide("a")
       }
 
       if "issued" in invoice and invoice != none {
-        "Issued on: " + invoice.at("issued").replace("\\", "")
+        labels.issued + ": " + invoice.at("issued").replace("\\", "")
         linebreak()
       } else {
         hide("a")
       }
 
       if "due" in invoice and invoice != none {
-        "Payment due date: " + invoice.at("due").replace("\\", "")
+        labels.due + ": " + invoice.at("due").replace("\\", "")
       } else {
         hide("a")
       }
@@ -212,7 +263,7 @@
       }
     }
 
-    let auto-table = items-table(invoice-items, money)
+    let auto-table = items-table(invoice-items, money, labels)
     if auto-table != none {
       auto-table
     } else {
@@ -228,15 +279,15 @@
 
   align(bottom, {
     if "bic" in bank and "iban" in bank and bank != none {
-      heading(level: 3, "Payment information")
+      heading(level: 3, labels.payment-title)
       v(fontsize * 0.5)
       "BIC: " + bank.at("bic").replace("\\", "")
       linebreak()
       "IBAN: " + bank.at("iban").replace("\\", "")
       linebreak()
-      "Reference: " + strong(invoice.at("reference").replace("\\", ""))
+      labels.reference + ": " + strong(invoice.at("reference").replace("\\", ""))
       linebreak()
-      text(luma(100), emph("To be used as label on your bank transfer to identify the transaction."))
+      text(luma(100), emph(labels.reference-note))
       linebreak()
     } else {
       hide("a")
@@ -245,19 +296,13 @@
     v(fontsize * 2)
 
     text(luma(100),
-      emph(
-        sender.at("name").replace("\\", "")
-          + " sent you this invoice on "
-          + format-date(issued)
-          + ". The invoice must be paid in under "
-          + count-days(issued, due)
-          + " days, otherwise you will have to pay a late fee of "
-          + str(invoice-fee)
-          + " % and a "
-          + penalty-display
-          + " penalty for recovery costs. "
-          + "No discount will be granted for early settlement."
-      )
+      emph(fill(labels.terms, (
+        sender: sender.at("name").replace("\\", ""),
+        date: format-date(issued, labels),
+        days: count-days(issued, due),
+        fee: format-amount(invoice-fee, lang: lang, region: region, decimals: str(invoice-fee).split(".").at(1, default: "").len()),
+        penalty: penalty-display,
+      )))
     )
   })
 }

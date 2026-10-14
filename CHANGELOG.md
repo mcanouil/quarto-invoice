@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### New Features
+
+- feat: Read every label, the payment terms and the date from Quarto `language` keys, so you can override any string, with French translations for `lang: fr`. (#43)
+
+### Build
+
+- build: Require Quarto 1.10.19 or later. (#43)
+
 ## 2.0.3 (2026-09-23)
 
 ### Documentation

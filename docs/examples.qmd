@@ -57,6 +57,25 @@ format:
 
 The document body is empty: with `invoice.items` set, the totals table takes its place.
 
+## A French invoice
+
+The site also builds a [French invoice](preview-fr.pdf).
+With `lang: fr`, the format uses its French labels, and `language` renames the registration label:
+
+```yaml
+format:
+  invoice-typst:
+    lang: fr
+    region: FR
+    sender:
+      registration: "123 456 789 / 123 456 789 00012"
+language:
+  fr:
+    invoice-registration: "SIREN/SIRET"
+```
+
+The rest of the front matter has the same structure as the English invoice.
+
 ## A branded invoice
 
 ```yaml
