@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.1.2 (2026-10-15)
+
 ### Bug Fixes
 
 - fix: Use New Computer Modern, which Typst includes, as the default font in place of Alegreya Sans.
