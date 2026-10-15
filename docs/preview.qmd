@@ -42,4 +42,13 @@ format:
     bank:
       bic: "EXAMPGB2L"
       iban: "GB00 EXAM 0000 0000 0000 00"
+brand:
+  typography:
+    fonts:
+      - family: Alegreya Sans
+        source: google
+        weight: [400, 700]
+        style: [normal, italic]
+    base:
+      family: "Alegreya Sans"
 ---

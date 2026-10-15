@@ -53,9 +53,20 @@ format:
     bank:
       bic: "EXAMPGB2L"
       iban: "GB00 EXAM 0000 0000 0000 00"
+brand:
+  typography:
+    fonts:
+      - family: Alegreya Sans
+        source: google
+        weight: [400, 700]
+        style: [normal, italic]
+    base:
+      family: "Alegreya Sans"
 ```
 
 The document body is empty: with `invoice.items` set, the totals table takes its place.
+The `brand` block downloads Alegreya Sans from Google Fonts when the invoice is rendered.
+Without it, the format uses New Computer Modern, which Typst includes.
 
 ## A French invoice
 
