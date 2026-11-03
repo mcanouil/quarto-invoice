@@ -138,7 +138,8 @@ The other French strings do not change.
 
 ::: {.callout-important}
 Put each key under the language code that matches `lang`, for example `fr:` or `en:`.
-With Quarto 1.10, Quarto ignores a key at the top level of `language`.
+A key at the top level of `language` applies only to a language that the format does not translate.
+With `lang: fr`, the French value of the format replaces it.
 :::
 
 You can also keep your strings in a translation file.
@@ -157,7 +158,7 @@ en:
 ```
 
 The values in the file replace the values of the format for the same keys.
-Quarto 1.11.4 and later also read one file for each language next to the main file, for example `my-labels-fr.yml` with the keys at the top level.
+Quarto also reads one file for each language next to the main file, for example `my-labels-fr.yml` with the keys at the top level.
 
 | Key | English default |
 | --- | --- |
@@ -186,7 +187,12 @@ Quarto 1.11.4 and later also read one file for each language next to the main fi
 : The language keys. {.striped .hover tbl-colwidths="[34,66]"}
 
 `invoice-title` is the first word of the PDF title, before the invoice number.
-The French values are in [`_extension.yml`](https://github.com/mcanouil/quarto-invoice/blob/main/_extensions/invoice/_extension.yml).
+The English values are in [`_language.yml`](https://github.com/mcanouil/quarto-invoice/blob/main/_extensions/invoice/_language.yml), and the French values are in [`_language-fr.yml`](https://github.com/mcanouil/quarto-invoice/blob/main/_extensions/invoice/_language-fr.yml).
+To translate the invoice into another language, for example German:
+
+1. Create `my-labels.yml` next to your document, with a `de:` line.
+2. Copy the content of `_language.yml` under that line, indented by two spaces, and translate the values. `_language-fr.yml` shows a finished translation.
+3. Set `lang: de` and `language: my-labels.yml` in your document.
 
 `invoice-terms` uses these placeholders: `{sender}`, `{date}`, `{days}`, `{fee}`, and `{penalty}`.
 The format replaces each placeholder with its value.
@@ -200,8 +206,8 @@ The date of issue in `invoice-terms` comes from three keys:
 
 The French values give `1er janvier 2026`.
 
-An empty value gives the English text.
-To remove the suffix after the day, remove `{ordinal}` from `invoice-date`.
+An empty value leaves the text empty, except for `invoice-months`, which must always list twelve names.
+For example, `invoice-ordinals: ""` removes the suffix after the day.
 
 ::: {.callout-warning}
 Do not use a backtick (`` ` ``) in a value.

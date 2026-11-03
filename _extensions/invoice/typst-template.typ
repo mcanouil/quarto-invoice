@@ -7,42 +7,6 @@
   datetime(year: parts.at(0), month: parts.at(1), day: parts.at(2))
 }
 
-#let default-labels = (
-  title: "Invoice",
-  registration: "Registration number",
-  vat-number: "VAT number",
-  number: "Invoice number",
-  issued: "Issued on",
-  due: "Payment due date",
-  payment-title: "Payment information",
-  reference: "Reference",
-  reference-note: "To be used as label on your bank transfer to identify the transaction.",
-  item-details: "Details",
-  item-quantity: "Qty",
-  item-unit-price: "Unit price",
-  item-vat: "VAT %",
-  item-total: "Total excl. VAT",
-  total-excl: "Total excl. VAT",
-  total-vat: "VAT",
-  total-incl: "Total",
-  terms: "{sender} sent you this invoice on {date}. The invoice must be paid in under {days} days, otherwise you will have to pay a late fee of {fee} % and a {penalty} penalty for recovery costs. No discount will be granted for early settlement.",
-  months: "January, February, March, April, May, June, July, August, September, October, November, December",
-  date: "the {day}{ordinal} of {month}, {year}",
-  ordinals: "st, nd, rd, th, th, th, th, th, th, th, th, th, th, th, th, th, th, th, th, th, st, nd, rd, th, th, th, th, th, th, th, st",
-)
-
-#let resolve-labels(labels) = {
-  let resolved = default-labels
-  if labels != none {
-    for (key, value) in labels {
-      if value != none and value != "" {
-        resolved.insert(key, value)
-      }
-    }
-  }
-  resolved
-}
-
 #let split-list(value) = value.split(",").map(str.trim)
 
 #let fill(template, values) = {
@@ -104,7 +68,9 @@
   labels: none,
   body
 ) = {
-  let labels = resolve-labels(labels)
+  if labels == none {
+    panic("invoice() needs a labels dictionary, which typst-show.typ builds from the invoice-* language keys.")
+  }
 
   show heading: it => {
     set par(leading: heading-line-height)
