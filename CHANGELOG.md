@@ -8,7 +8,7 @@
 
 ### Build
 
-- build: Require Quarto 1.11.4 or later. (#44)
+- build: Require Quarto 1.12.1 or later. (#44)
 
 ## 2.1.2 (2026-10-15)
 
