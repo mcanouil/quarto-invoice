@@ -139,7 +139,7 @@ The other French strings do not change.
 ::: {.callout-important}
 Put each key under the language code that matches `lang`, for example `fr:` or `en:`.
 A key at the top level of `language` applies only to a language that the format does not translate.
-With `lang: fr`, the French value of the format replaces it.
+With `lang: fr`, the French value of the format replaces it ([quarto-dev/quarto-cli#15349](https://github.com/quarto-dev/quarto-cli/issues/15349)).
 :::
 
 You can also keep your strings in a translation file.
