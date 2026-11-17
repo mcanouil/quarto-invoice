@@ -14,7 +14,7 @@ on:
       quarto:
         type: choice
         description: "Quarto version"
-        default: "release"
+        default: "pre-release"
         options:
           - "release"
           - "pre-release"
