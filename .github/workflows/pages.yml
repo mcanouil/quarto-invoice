@@ -24,7 +24,7 @@ on:
       quarto:
         type: choice
         description: "Quarto version"
-        default: "release"
+        default: "pre-release"
         options:
           - "release"
           - "pre-release"
@@ -41,4 +41,4 @@ jobs:
       id-token: write
     with:
       use-main-as-release: ${{ inputs.use-main-as-release || false }}
-      quarto: ${{ inputs.quarto || 'release' }}
+      quarto: ${{ inputs.quarto || 'pre-release' }}
