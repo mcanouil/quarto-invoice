@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.2.0 (2026-11-17)
+
 ### New Features
 
 - feat: Ship the English and French strings as `_language.yml` and `_language-fr.yml`, which you can copy to translate the invoice into another language. (#44)
